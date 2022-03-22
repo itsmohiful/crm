@@ -1,0 +1,43 @@
+{% load static %}
+<div class="overlay"></div>
+  <!-- Header start -->
+  <header class="header-area">
+    <div class="container">
+      <div class="header">
+        <a class="logo" href="{% url 'home' %}">
+          <!-- <img src="{% static 'images/logo.svg' %}" alt="upskill" /> -->
+          Customer Relationship Management
+        </a>
+        <button class="hamburger-icon">&#9776</button>
+        <div class="menu">
+          <nav class="main-nav">
+            <ul>
+              <li><a class="active" href="{% url 'home' %}">Home</a></li>
+              <!-- <li><a href="#">Training</a></li>
+              <li><a href="#">Video Lessions</a></li>
+              <li><a href="#">Earn With Upskill</a></li> -->
+            </ul>
+          </nav>
+          <div class="auth-nav">
+            <ul>
+
+              {% if request.user.is_authenticated %}
+                <li>
+                  <a href="{% url 'profile' %}">{{ user.username }}</a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}"> <i class="fa fa-user-circle"></i> Sign Out</a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="{% url 'login' %}"> <i class="fa fa-user-circle"></i> Sign In</a>
+                </li>
+                <li><a href="{% url 'register' %}">Sign Up</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header end -->

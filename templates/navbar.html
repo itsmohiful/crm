@@ -1,0 +1,75 @@
+<!-- Sidebar start -->
+{% load static %}
+<aside class="sidebar">
+    <div class="sidebar-close">&times;</div>
+    <div class="user-info">
+      <!-- <img src="https://picsum.photos/150" class="avatar" alt="avatar" /> -->
+      <!-- <h2>Customer Relationship Management</h2> -->
+      <!-- <p>Head of Design</p>
+      <p>
+        Human Factors International (HFI), Scrum Alliance, University of
+        Dhaka
+      </p> -->
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="{% url 'home' %}" class="active">
+            <img src="{% static 'images/1-browser.svg' %}" alt="" />
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'customers-list' %}">
+            <img src="{% static 'images/2-file.svg' %}" alt="" />
+            <span>Customers List</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'order_list' %}">
+            <img src="{% static 'images/3-contract.svg' %}" alt="" />
+            <span>Order List</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'create_order' %}">
+            <img src="{% static 'images/3-contract.svg' %}" alt="" />
+            <span>Create An Order</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'product' %}">
+            <img src="{% static 'images/3-contract.svg' %}" alt="" />
+            <span>Products List</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'add_product' %}">
+            <img src="{% static 'images/3-contract.svg' %}" alt="" />
+            <span>Create Product</span>
+          </a>
+        </li>
+
+
+
+        <li>
+          <a href="{% url 'profile' %}">
+            <img src="{% static 'images/5-user.svg' %}" alt="" />
+            <span>Customer's Profile</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a href="message.html">
+            <span class="badge">3</span>
+            <img src="{% static 'images/6-conversation.svg' %}" alt="" />
+            <span>Message</span>
+          </a>
+        </li> -->
+      </ul>
+    </nav>
+  </aside>
+  <!-- Sidebar end -->

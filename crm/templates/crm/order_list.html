@@ -1,0 +1,83 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+{% include 'messages.html' %}
+
+<div class="container mt-4">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<!-- <div class="col-md-6 col-sm-3">
+				<h4 class="m-0"> Tags </h4>
+			</div> -->
+			<div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+				
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+					<li class="breadcrumb-item"><a href="#">All Order</a></li>
+					<!-- <li class="breadcrumb-item active">Tags</li> -->
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<br>
+
+<div class="row">
+
+	<br>
+	<div class="row">
+		<div class="col">
+			<div class="card card-body">
+				{% csrf_token %}
+				<form method="get">
+					{{ order_filter.form }}
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+			</div>
+		</div>
+		
+	</div>
+	<hr>
+
+	<div class="col-md">
+		<div class="card card-body">
+            <h5 class="large-text">Orders List</h5>
+            <hr>
+			<table class="table">
+				<thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Note</th>
+                        <th>Date Orderd</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+
+				<tbody>
+                    {% for order in all_orders %}
+					<tr>
+                        <td> {{ order.customer }} </td>
+						<td> {{ order.product.name }} </td>
+						<td> {{ order.product.category }} </td>
+						<td> {{ order.note }} </td>
+						<td> {{ order.date_created }} </td>
+						<td> {{ order.status }} </td>
+						<td><a href=" {% url 'update_order' order.id %}" class="btn btn-info btn-sm text-light">Update</a></td>
+						<td><a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+					</tr>
+				{% endfor %}
+                </tbody>
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

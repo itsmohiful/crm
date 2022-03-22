@@ -1,0 +1,50 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+{% include 'messages.html' %}
+
+<div class="container mt-4">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <div class="col-md-6 col-sm-3">
+                <h4 class="m-0"> Tags </h4>
+            </div> -->
+            <div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+                
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div class="card card-body">
+                
+                <h5 class="large-text">Information {{ user.username }}</h5>
+                <hr>
+
+                <div class="profile-photo" style="width: 8rem; padding:1rem">
+                    <img src="{{ user.profile.profile_image.url }}" alt="profile picture">
+                </div>
+
+                <p style="font-size: 20px;">Name: <span class="pl-4">{{ user.username }} </p>
+                <p style="font-size: 20px;">Email: <span class="pl-4">{{ user.email }} </p>
+                {% if user.profile.phone %}
+                    <p style="font-size: 20px;">Phone: <span class="pl-4">{{ user.profile.phone }} </p>
+                {% endif %}
+                {% if user.profile.address %}
+                    <p style="font-size: 20px;">Address: <span class="pl-4">{{ user.profile.address }} </p>
+                {% endif %}
+                
+                
+                <a style="width:8rem;float:right" href=" {% url 'update_profile' %}" class="btn btn-info btn-sm text-light">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

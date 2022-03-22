@@ -1,0 +1,57 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <div class="col-md-6 col-sm-3">
+                <h4 class="m-0"> Tags </h4>
+            </div> -->
+            <div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+                
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div class="card card-body">
+                
+                <h5 class="large-text">Information {{ user.username }}</h5>
+                <hr>
+
+                <form action="" method="POST" enctype="multipart/form-data" class=" shadow-sm p-4 rounded-lg">
+                    {% csrf_token %}
+    
+                    {% for field in user_form %}
+                        <div class="mb-3">
+                            <label for="" class="block mb-2">{{ field.label_tag }} </label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+    
+                    {% for field in profile_form %}
+                        <div class="mb-3">
+                            <label for="" class="block mb-2">{{ field.label_tag }} </label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+    
+                    <div class="flex justify-between items-center">
+                        <a href="{% url 'profile' %}" class="btn btn-primary">Back</a>
+                         <button type="submit" class="btn btn-info">Update</button>
+                    </div>
+                   
+               </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <div class="col-md-6 col-sm-3">
+                <h4 class="m-0"> Tags </h4>
+            </div> -->
+            <div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+                
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Update Product</a></li>
+                    <!-- <li class="breadcrumb-item active">Tags</li> -->
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-body">
+                    <h5 class="large-text">Update Product</h5>
+                    <hr>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {% for forms in form %}
+                            <h6 class="">{{forms.label}}</h6>
+                            <h6 class="">{{forms}}</h6> <br>
+                        {% endfor %}
+                        <input class="btn btn-primary" type="submit" name="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

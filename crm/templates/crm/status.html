@@ -1,0 +1,54 @@
+
+	{% block content %}
+    <div class="cards">
+    <div class="card">
+      <p class="card-title">Total Customers</p>
+      <div class="card-meta">
+        <p>{{ total_customers }}</p>
+        <i class="fas fa-coins"></i>
+      </div>
+    </div>
+    <div class="card">
+      <p class="card-title">Total Orders</p>
+      <div class="card-meta">
+        <p>{{ total_orders }}</p>
+        <i class="fas fa-money-check-alt"></i>
+      </div>
+    </div>
+    <div class="card">
+      <p class="card-title">Delivered Orders</p>
+      <div class="card-meta">
+        <p>{{ delivered }}</p>
+        <i class="fas fa-folder"></i>
+      </div>
+    </div>
+    <div class="card">
+      <p class="card-title">Pending Orders</p>
+      <div class="card-meta">
+        <p>{{ pending }}</p>
+        <i class="fas fa-folder"></i>
+      </div>
+    </div>
+    <div class="card">
+      <p class="card-title">Out For Delivery</p>
+      <div class="card-meta">
+        <p>{{ out_for_delivery }}</p>
+        <i class="fas fa-folder"></i>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-title">Cancel Orders</p>
+      <div class="card-meta">
+        <p>0</p>
+        <i class="fas fa-folder"></i>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="tabs">
+    <button class="tab active">Upcoming</button>
+    <button class="tab">Past</button>
+    <button class="tab">All</button>
+  </div> -->
+{% endblock %}

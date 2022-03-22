@@ -1,0 +1,65 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+{% include 'messages.html' %}
+
+<div class="container mt-4">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<!-- <div class="col-md-6 col-sm-3">
+				<h4 class="m-0"> Tags </h4>
+			</div> -->
+			<div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+				
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+					<li class="breadcrumb-item"><a href="#">All Product</a></li>
+					<!-- <li class="breadcrumb-item active">Tags</li> -->
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+		<br>
+
+		<div class="row">
+			<div class="col-md-10 offset-1">
+				<!-- <div class="card card-body">
+					<h5>Products List</h5>
+				</div> -->
+				<div class="card card-body">
+					<h5 class="large-text">Products List</h5>
+        			<hr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Product Name</th>
+								<th>Category</th>
+								<th>Price</th>
+								<th>Add Date</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{% for product in products %}
+							<tr>
+								<td>{{ product.name }}</td>
+								<td>{{ product.category }}</td>
+								<td>{{ product.price }} $</td>
+								<td>{{ product.date_created }}</td>
+								<td><a class="btn btn-info btn-sm text-light" href="{% url 'edit_product' product.id %}">update</a></td>
+								<td><a class="btn btn-danger btn-sm text-light" href="{% url 'delete_product' product.id %}">Delete</a></td>
+							</tr>
+						{% endfor %}
+						</tbody>
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

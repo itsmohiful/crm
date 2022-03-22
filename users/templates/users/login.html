@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static './css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+	{% include 'header.html' %}
+
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+            <div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-user user-logo"></span></h2></span>
+				<h4 class="company_title">Customer Access</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+                        <!-- <div class="col-lg-12 login-key">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                       </div>   -->
+                       <h2>Log In</h2>
+					</div>
+					<div class="row">
+						<form method="POST" control="" class="form-group">
+							{% csrf_token %}
+
+							<div class="row">
+                                <i class=" edit-icons fa fa-user"></i>
+								<input type="text" name="username" id="username" class="form__input" placeholder="Username">
+							</div>
+							<div class="row ">
+								 <i class="edit-icons-lock fa fa-lock"></i> 
+								<input type="password" name="password" id="password" class="form__input " placeholder="Password">
+							</div>
+                            
+							<!-- <div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div> -->
+							<div class="row">
+								<button type="submit" class="btn"> Submit </button>
+							</div>
+						</form>
+
+						{% for message in messages %}
+							<div class="d-flex justify-content-center pt-1 text-light">
+								<p>{{ message }}</p>
+							</div>
+						{% endfor %}
+
+					</div>
+					<div class="row">
+						<p>Don’t have an account? <a href="{% url 'register' %}"> Regstation</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

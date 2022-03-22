@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <div class="col-md-6 col-sm-3">
+                <h4 class="m-0"> Tags </h4>
+            </div> -->
+            <div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+                
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Delete Product</a></li>
+                    <!-- <li class="breadcrumb-item active">Tags</li> -->
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-body">
+                    <p>Are you sure want to delete "{{ item }}"</p>
+
+                    <form action="{% url 'delete_product' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <a class="btn btn-primary" href="{% url 'product' %}">Cancel</a>
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

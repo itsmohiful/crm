@@ -1,0 +1,57 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <!-- <div class="col-md-6 col-sm-3">
+                    <h4 class="m-0"> Tags </h4>
+                </div> -->
+                <div class="flex col-md-6 col-sm-9 justify-content-end justify-items-end">
+                    
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-tachometer-alt"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Customers List</a></li>
+                        <!-- <li class="breadcrumb-item active">Tags</li> -->
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="col">
+    
+    <div class="card card-body">
+        <h5 class="large-text">CUSTOMERS INFORMATION</h5>
+        <hr>
+        <!-- <a class="btn btn-customers text-light btn-sm btn-block" href="">Create Customer</a> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <th scope="row"></th>
+                    
+                    <td> {{ customer.username }} </td>
+                    <td> {{ customer.email }} </td>
+                    <td><a class="btn btn-info btn-sm text-light" href="{% url 'customer' customer.id %}">View</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    
+        </table>
+    </div>
+    
+</div>
+
+{% endblock %}
+
