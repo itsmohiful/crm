@@ -48,9 +48,9 @@ def customers_list(request):
     return render(request,'crm/all_customers.html',context)
 
 
-#customer view
-def customers(request,pk_test):
-    customer = User.objects.get(id=pk_test)
+#customer dashboard
+def customers(request,pk):
+    customer = User.objects.get(id=pk)
     orders = customer.order_set.all()
     order_count = orders.count()
 
@@ -65,7 +65,7 @@ def customers(request,pk_test):
         'orderFilter' : order_Filter,
     }
 
-    return render(request,'crm/customers.html',context)
+    return render(request,'crm/customer.html',context)
 
 
 #product view
@@ -77,8 +77,8 @@ def products(request):
     return render(request,'crm/products.html',context)
 
 
-@login_required(login_url='login')
 #add products
+@login_required(login_url='login')
 def add_product(request):
     form = ProductForm()
     if request.method == 'POST':
@@ -126,27 +126,6 @@ def delete_product(request,pk):
     return render(request,'crm/delete_product.html',context)
 
 
-
-#create order using inline set
-def createorderinlineset(request,pk):
-    OrderFormSet = inlineformset_factory(Customer,Order,fields=('product','status'),extra=5)
-    customer = Customer.objects.get(id=pk)
-
-    formset = OrderFormSet(queryset=Order.objects.none(),instance=customer)
-    
-    if request.method == 'POST':
-        formset = OrderFormSet(request.POST,instance=customer)
-        if formset.is_valid():
-            formset.save()
-            return redirect('/')
-
-    context = {
-        'formset' : formset,
-    }
-
-    return render(request,'crm/order_form_inline.html',context)
-
-
 #order list
 def order_list(request):
     all_orders = Order.objects.order_by("-date_created")
@@ -167,7 +146,7 @@ def order_list(request):
 
 @login_required(login_url='login')
 #create order view
-def createorder(request):
+def create_order(request):
     #customer = Customer.objects.get(id=pk)
     form = OrderForm()
     if request.method == 'POST':
@@ -186,7 +165,7 @@ def createorder(request):
 
 
 #update order
-def updateorder(request,pk):
+def update_order(request,pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance = order)
 
@@ -205,7 +184,7 @@ def updateorder(request,pk):
 
 
 #delete order view
-def deleteorder(request,pk):
+def delete_order(request,pk):
     order = Order.objects.get(id=pk)
     if request.method == 'POST':
         order.delete()

@@ -14,12 +14,14 @@ def register(request):
     if request.method == 'POST':
         form = UserRegister(request.POST)
         if form.is_valid():
-            user = form.cleaned_data.get('username')
-            form.save()
+            username = form.cleaned_data.get('username')
+            user = form.save()
+            if user is not None:
+                login(request,user)
 
-            messages.success(request,'Account was created for ' + user )
+                messages.success(request,'Account was created for ' + username )
 
-            return redirect('login')
+                return redirect('home')
 
     context = {
         'form' : form,

@@ -32,7 +32,7 @@
 				</div> -->
 				<div class="card card-body">
 					<h5 class="large-text">Products List</h5>
-        			<hr>
+        		    <hr>
 					<table class="table">
 						<thead>
 							<tr>
@@ -40,6 +40,11 @@
 								<th>Category</th>
 								<th>Price</th>
 								<th>Add Date</th>
+								{% if request.user == perms.crm.add_product or request.user.is_staff %}
+									<th>Update</th>
+									<th>Remove</th>
+								{% endif %}
+								
 							</tr>
 						</thead>
 
@@ -50,8 +55,11 @@
 								<td>{{ product.category }}</td>
 								<td>{{ product.price }} $</td>
 								<td>{{ product.date_created }}</td>
-								<td><a class="btn btn-info btn-sm text-light" href="{% url 'edit_product' product.id %}">update</a></td>
-								<td><a class="btn btn-danger btn-sm text-light" href="{% url 'delete_product' product.id %}">Delete</a></td>
+								{% if request.user == perms.crm.add_product or request.user.is_staff %}
+									<td><a class="btn btn-info btn-sm text-light" href="{% url 'edit_product' product.id %}">update</a></td>
+									<td><a class="btn btn-danger btn-sm text-light" href="{% url 'delete_product' product.id %}">Delete</a></td>
+								{% endif %}
+								
 							</tr>
 						{% endfor %}
 						</tbody>
