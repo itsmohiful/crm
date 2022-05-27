@@ -16,7 +16,7 @@ from .forms import OrderForm, ProductForm
 
 #home view 
 @login_required(login_url='login')
-@user_permission(allowed_roles=['admin','moderator'])
+@user_permission(allowed_roles=['admin','moderator','customer'])
 def home(request):
     customers = User.objects.all()
     orders = Order.objects.all()
@@ -51,23 +51,45 @@ def customers_list(request):
 
 
 #customer dashboard
-def customers(request,pk):
+def customer(request,pk):
     customer = User.objects.get(id=pk)
     orders = customer.order_set.all()
     order_count = orders.count()
 
     #filtering_order
-    order_Filter = OrderFilter(request.GET,queryset=orders)
-    orders = order_Filter.qs
+    order_filter = OrderFilter(request.GET, queryset=orders)
+    orders = order_filter.qs
 
     context = {
         'customer' : customer,
         'orders' : orders,
         'order_count' : order_count,
-        'orderFilter' : order_Filter,
+        'order_filter' : order_filter,
     }
 
     return render(request,'crm/customer.html',context)
+
+
+#every customer dashboard
+def customer_page(request):
+    customer_id = request.user.id
+    customer = User.objects.filter(id=customer_id).first()
+    orders = customer.order_set.all()
+    order_count = orders.count()
+
+    #filtering_order
+    order_filter = OrderFilter(request.GET, queryset = orders)
+    orders = order_filter.qs
+
+    context = {
+        'customer' : customer,
+        'orders' : orders,
+        'order_count' : order_count,
+        'order_filter' : order_filter,
+    }
+
+    return render(request,'crm/customer_page.html',context)
+
 
 
 #product view
@@ -158,7 +180,7 @@ def create_order(request):
             order.customer = request.user
             order.save()
             messages.success(request,f'Successfully Order Created')
-            return redirect('order_list')
+            return redirect('customer_page')
     context = {
         'form' : form,
     }

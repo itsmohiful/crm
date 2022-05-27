@@ -20,8 +20,9 @@ def user_permission(allowed_roles=[]):
                 print('group name= ',group)
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
-            else:
-                return HttpResponse("you are not authorized")
+            if group == 'customer':
+                return HttpResponse("you are not able to view this page ! ")
+                #return redirect('/customer_page')
 
         return wrapper_func
     return decorator

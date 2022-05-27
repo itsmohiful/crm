@@ -17,5 +17,6 @@ urlpatterns = [
     path('delete_order/<str:pk>',views.delete_order,name='delete_order'),
     #customer url
     path('customers-list',views.customers_list,name='customers_list'),
-    path('customer_dashboard/<str:pk>',views.customers,name='customer'),
+    path('customer_dashboard/<str:pk>',views.customer,name='customer'),
+    path('customer_dashboard/',views.customer_page,name='customer_page'),
 ]
