@@ -1,27 +1,34 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group, User
 from django.shortcuts import redirect, render
 
-from .forms import ProfileUpdateForm, UserRegister, UserUpdateForm
+from .decorators import unauthenticated_user
+from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
 
 # Create your views here.
 
 #user registration
+@unauthenticated_user
 def register(request):
-    form = UserRegister()
+    form = UserRegisterForm()
 
     if request.method == 'POST':
-        form = UserRegister(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            user = form.save()
-            if user is not None:
-                login(request,user)
+            user=form.save()
+            messages.success(request,'Account was created for ' + username )
 
-                messages.success(request,'Account was created for ' + username )
+            group = Group.objects.get(name='customer')
+            #user.groups.add(group)
+            group.user_set.add(user)
 
-                return redirect('home')
+            return redirect('home')
+        
+        else:
+            form = UserRegisterForm()
 
     context = {
         'form' : form,
@@ -33,6 +40,7 @@ def register(request):
 
 
 #user login
+@unauthenticated_user
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')

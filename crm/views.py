@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
 from django.shortcuts import redirect, render
+from users.decorators import user_permission
 
 from .filters import *
 from .forms import OrderForm, ProductForm
@@ -15,6 +16,7 @@ from .forms import OrderForm, ProductForm
 
 #home view 
 @login_required(login_url='login')
+@user_permission(allowed_roles=['admin','moderator'])
 def home(request):
     customers = User.objects.all()
     orders = Order.objects.all()

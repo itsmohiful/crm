@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from .models import Profile
 
 
-class UserRegister(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
     class Meta :
         model = User
         fields = ['username','email','password1','password2']
