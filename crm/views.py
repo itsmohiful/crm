@@ -16,7 +16,7 @@ from .forms import OrderForm, ProductForm
 
 #home view 
 @login_required(login_url='login')
-@user_permission(allowed_roles=['admin','moderator','customer'])
+@user_permission
 def home(request):
     customers = User.objects.all()
     orders = Order.objects.all()

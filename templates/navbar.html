@@ -13,7 +13,7 @@
     </div>
     <nav class="sidebar-nav">
       <ul>
-        {% if request.user == has_perms.crm.delete_product or user.is_staff %}
+        {% if request.user == user.is_staff or perms.crm.delete_product %}
           <li>
             <a href="{% url 'home' %}" class="actives" id=""
               <img src="{% static 'images/1-browser.svg' %}" alt="" />
@@ -37,7 +37,7 @@
           </a>
         </li>
 
-        {% if request.user == has_perms.crm.delete_product or request.user == is_staff %}
+        {% if request.user == is_staff or perms.crm.delete_product %}
           <li>
             <a class="actives" href="{% url 'order_list' %}">
               <img src="{% static 'images/3-contract.svg' %}" alt="" />
