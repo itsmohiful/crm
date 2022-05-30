@@ -46,14 +46,19 @@
 								<input type="checkbox" name="remember_me" id="remember_me" class="">
 								<label for="remember_me">Remember Me!</label>
 							</div> -->
+
+							<div class="row">
+								<a class="text-danger" href="{% url 'password_reset' %}">Forgot Password? Reset</a>
+							</div>
+
 							<div class="row">
 								<button type="submit" class="btn"> Submit </button>
 							</div>
 						</form>
 
 						{% for message in messages %}
-							<div class="d-flex justify-content-center pt-1 text-light">
-								<p>{{ message }}</p>
+							<div class="d-flex justify-content-center pt-1 text-light border-info">
+								<p class="text-info" >{{ message }}</p>
 							</div>
 						{% endfor %}
 
